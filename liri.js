@@ -15,7 +15,7 @@ function start() {
         {
             type: "list",
             message: "Select a Command",
-            choices: ["Show My tweets", "Get Spotify Song Info", "Get Movie Info", "Do What It Says"],
+            choices: ["Show My tweets", "Get Spotify Song Info", "Get Movie Info", "Do What It Says", "Cancel"],
             name: "command"
         }
     ]).then(function (response) {
@@ -31,6 +31,8 @@ function start() {
                 break
             case "Do What It Says":
                 selectedDoWhatItSays()
+                break
+            case "Cancel":
                 break
         }
     })
@@ -144,7 +146,10 @@ function runCommand(command, input) {
         case "movie-this":
             getMovieInfo(input);
             break
-        default: break
+        default:
+            console.log(`Error: Invalid command '${command}'`);
+            start();
+            break
     }
 }
 
